@@ -17,6 +17,22 @@
       <div class="spinner-border m-auto text-info" id="spinner" role="status"></div>
     </div>
 
-    <script src="./script.js"></script>
+    <script>
+      let div = document.getElementById('Pokemones')
+      let spinner = document.getElementById('spinner')
+      fetch('http://localhost:3000/pokemones')
+        .then((res) => res.json())
+        .then((pokemones) => {
+          spinner.style.display = 'none'
+          pokemones.forEach((p) => {
+          div.innerHTML += `
+            <div>
+            <img src="${p.image}" >
+            <p>${p.name}</p>
+            </div>
+          `
+        })
+      })
+    </script>
   </body>
 </html>
